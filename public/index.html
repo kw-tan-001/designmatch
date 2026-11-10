@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DesignMatch - find the interior designer for your home</title>
+  <meta name="description" content="Browse interior design projects from verified Singapore designers, shortlist the ones you love and contact the designer directly.">
+  <meta name="theme-color" content="#352a23">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/boot.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#app">Skip to content</a>
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header-row">
+      <a class="brand" href="#/" aria-label="DesignMatch home"><svg class="brand-mark" viewBox="0 0 28 32" aria-hidden="true"><path d="M4 30V14a10 10 0 0 1 20 0v16" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9.5 30V18.5a4.5 4.5 0 0 1 9 0V30" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="14" cy="9.2" r="2.1" fill="currentColor"/><path d="M1 30.2h26" stroke="currentColor" stroke-width="1.6"/></svg><span class="brand-word">Design<span class="bm">Match</span></span></a>
+      <nav class="nav" id="mainNav" aria-label="Main"></nav>
+      <div class="header-actions" id="headerActions"></div>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="menuOverlay">Menu</button>
+    </div>
+  </header>
+
+  <div class="menu-overlay" id="menuOverlay" hidden>
+    <div class="wrap menu-top">
+      <a class="brand" href="#/"><svg class="brand-mark" viewBox="0 0 28 32" aria-hidden="true"><path d="M4 30V14a10 10 0 0 1 20 0v16" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9.5 30V18.5a4.5 4.5 0 0 1 9 0V30" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="14" cy="9.2" r="2.1" fill="currentColor"/><path d="M1 30.2h26" stroke="currentColor" stroke-width="1.6"/></svg><span class="brand-word">Design<span class="bm">Match</span></span></a>
+      <button class="menu-toggle" type="button" data-menu-close>Close</button>
+    </div>
+    <div class="wrap menu-body">
+      <nav class="menu-links" id="menuLinks" aria-label="Site menu"></nav>
+      <div class="menu-side" id="menuSide"></div>
+    </div>
+  </div>
+
+  <main id="app" tabindex="-1"></main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-mark" aria-hidden="true">DesignMatch</div>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#/"><svg class="brand-mark" viewBox="0 0 28 32" aria-hidden="true"><path d="M4 30V14a10 10 0 0 1 20 0v16" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9.5 30V18.5a4.5 4.5 0 0 1 9 0V30" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="14" cy="9.2" r="2.1" fill="currentColor"/><path d="M1 30.2h26" stroke="currentColor" stroke-width="1.6"/></svg><span class="brand-word">Design<span class="bm">Match</span></span></a>
+          <p>Real renovation projects from verified Singapore interior designers, gathered in one place so you can see the work before you choose the studio.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#/discover">All projects</a></li>
+            <li><a href="#/designers">Designers</a></li>
+            <li><a href="#/discover?sort=most_viewed">Most viewed</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Homeowners</h4>
+          <ul>
+            <li><a href="#/register">Create a free account</a></li>
+            <li><a href="#/favourites">Your favourites</a></li>
+            <li><a href="#/enquiries">Your enquiries</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Designers</h4>
+          <ul>
+            <li><a href="#/register/designer">Register your studio</a></li>
+            <li><a href="#/studio">Studio dashboard</a></li>
+            <li><a href="#/login">Log in</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>DesignMatch, CSIT314 group project, Singapore.</span>
+        <span>Project images are illustrated sample renders.</span>
+      </div>
+    </div>
+  </footer>
+  <div id="toasts" role="status" aria-live="polite"></div>
+  <div id="modalRoot"></div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/views/public.js"></script>
+  <script src="/js/views/customer.js"></script>
+  <script src="/js/views/designer.js"></script>
+  <script src="/js/views/admin.js"></script>
+  <script src="/js/views/manager.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

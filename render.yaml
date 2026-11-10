@@ -1,0 +1,33 @@
+# Render blueprint: one web service + one managed PostgreSQL database.
+# Create it from the Render dashboard (New > Blueprint) and point it at this repository.
+services:
+  - type: web
+    name: designmatch
+    runtime: node
+    plan: free
+    # Migrations always run. Set SEED_DEMO_DATA to "true" to reload the Faker demo data (160 projects,
+    # demo accounts) on each deploy - handy for a marked demo, but it wipes any data people added.
+    buildCommand: npm install && npm run migrate && if [ "$SEED_DEMO_DATA" = "true" ]; then npm run seed; fi
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: false            # deploys are triggered by the GitHub Actions deploy job after tests pass
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: APP_TIMEZONE
+        value: Asia/Singapore
+      - key: SEED_DEMO_DATA
+        value: "true"
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: designmatch-db
+          property: connectionString
+
+databases:
+  - name: designmatch-db
+    plan: free
+    postgresMajorVersion: "16"
