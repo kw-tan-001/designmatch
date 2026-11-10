@@ -7,7 +7,7 @@ services:
     plan: free
     # Migrations always run. Set SEED_DEMO_DATA to "true" to reload the Faker demo data (160 projects,
     # demo accounts) on each deploy - handy for a marked demo, but it wipes any data people added.
-    buildCommand: npm install && npm run migrate && if [ "$SEED_DEMO_DATA" = "true" ]; then npm run seed; fi
+    buildCommand: npm install --include=dev && npm run migrate && if [ "$SEED_DEMO_DATA" = "true" ]; then npm run seed; fi
     startCommand: npm start
     healthCheckPath: /api/health
     autoDeploy: false            # deploys are triggered by the GitHub Actions deploy job after tests pass
