@@ -142,6 +142,38 @@
         prev.appendChild(img);
       });
     });
+    // auto-description from design styles
+    const _descEl = document.getElementById('iDesc');
+    const _DESC = {
+      'Modern': 'This project brings a clean, contemporary aesthetic to the space. We focused on straight lines, neutral tones and functional furniture to create a living environment that feels open and uncluttered.',
+      'Minimalist': 'Simplicity is the guiding principle here. Every element earns its place — stripped-back finishes, a restrained palette and carefully chosen materials work together to create a calm, purposeful space.',
+      'Scandinavian': 'Warmth meets function in this Scandinavian-inspired design. Light wood tones, cosy textiles and an abundance of natural light set the tone, while smart storage keeps the space tidy and welcoming.',
+      'Japandi': 'This design blends Japanese minimalism with Scandinavian warmth. Wabi-sabi principles guide the material choices — natural textures, muted earthy tones and handcrafted details that reward a closer look.',
+      'Industrial': 'Exposed structural elements, raw concrete and aged metal give this space an honest, urban character. Soft furnishings and warm lighting are introduced to balance the harder finishes.',
+      'Contemporary': 'The design responds to current trends while remaining timeless. A mix of textures, a confident use of colour accents and bespoke joinery give the space a polished, up-to-date feel.',
+      'Mid-Century Modern': 'Iconic mid-century forms meet modern living requirements. Tapered legs, organic curves and a warm wood-and-leather palette pay homage to the period without feeling like a museum piece.',
+      'Luxury': 'No detail was left unconsidered. Premium materials — marble, lacquered cabinetry and statement lighting — are layered to create a space that feels indulgent yet refined.',
+      'Rustic': 'Natural imperfection is celebrated throughout. Reclaimed timber, stone surfaces and a warm, earthy palette bring an authentic, lived-in character that feels both grounded and inviting.',
+      'Peranakan': 'Vibrant Peranakan heritage is woven into every corner. Hand-painted tiles, jewel-toned upholstery and intricate carved details tell a story of culture and craftsmanship passed down through generations.',
+    };
+    const _MULTI = {
+      'Japandi+Minimalist': 'Restraint is the common thread between Japandi and Minimalist sensibilities. The result is a serene space where every surface and object is chosen with intention — quiet, deliberate and deeply considered.',
+      'Minimalist+Modern': 'Clean geometry and an uncluttered plan define this project. Modern proportions and minimalist discipline combine to produce a space that is both visually crisp and highly liveable.',
+      'Minimalist+Scandinavian': 'Scandinavian warmth tempers the austerity of the minimalist approach. The outcome is a space that feels edited but never cold — practical, light-filled and genuinely comfortable.',
+      'Contemporary+Luxury': 'Contemporary confidence meets luxury execution. The design is current and bold in its composition, elevated by premium finishes and bespoke elements that make an immediate impression.',
+      'Industrial+Modern': 'Industrial honesty and modern precision make for a compelling combination. Structural rawness is disciplined by clean lines and a carefully controlled material palette.',
+    };
+    if (!id) {
+      document.querySelectorAll('input[name=styleIds]').forEach((cb) => cb.addEventListener('change', () => {
+        if (_descEl.value.trim().length > 10 && _descEl.dataset.auto !== '1') return;
+        const sel = [...document.querySelectorAll('input[name=styleIds]:checked')].map((c) => c.closest('label').textContent.trim());
+        if (!sel.length) { _descEl.value = ''; _descEl.dataset.auto = ''; return; }
+        const parts = sel.map((s) => _DESC[s]).filter(Boolean);
+        const txt = parts.join(' ');
+        if (txt) { _descEl.value = txt; _descEl.dataset.auto = '1'; }
+      }));
+      _descEl.addEventListener('input', () => { if (!_descEl.value.trim()) _descEl.dataset.auto = ''; });
+    }
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const errEl = document.getElementById('idpErr');
